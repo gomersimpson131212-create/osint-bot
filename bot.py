@@ -42,3 +42,30 @@ updater = Updater("8871623776:AAFUiK_rZizgVhIyhZHRBIx-3WTCcRySqyg")  # вста�
 updater.dispatcher.add_handler(CommandHandler("github", github))
 updater.dispatcher.add_handler(CommandHandler("help", help_command))
 updater.start_polling()
+from db import search_by_name, search_by_phone
+
+def searchname(update, context):
+    if not context.args:
+        update.message.reply_text("Укажи ФИО!")
+        return
+    fio = " ".join(context.args)
+    result = search_by_name(fio)
+    if result:
+        update.message.reply_text(str(result))
+    else:
+        update.message.reply_text("Ничего не найдено")
+
+def searchphone(update, context):
+    if not context.args:
+        update.message.reply_text("Укажи номер!")
+        return
+    phone = context.args[0]
+    result = search_by_phone(phone)
+    if result:
+        update.message.reply_text(str(result))
+    else:
+        update.message.reply_text("Ничего не найдено")
+
+updater.dispatcher.add_handler(CommandHandler("searchname", searchname))
+updater.dispatcher.add_handler(CommandHandler("searchphone", searchphone))
+
