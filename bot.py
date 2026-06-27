@@ -38,7 +38,7 @@ def help_command(update, context):
 """
     update.message.reply_text(help_text)
 
-updater = Updater("YOUR_TELEGRAM_BOT_TOKEN")  # вставь сюда токен от BotFather
+updater = Updater("8871623776:AAFUiK_rZizgVhIyhZHRBIx-3WTCcRySqyg")  # вставь сюда токен от BotFather
 updater.dispatcher.add_handler(CommandHandler("github", github))
 updater.dispatcher.add_handler(CommandHandler("help", help_command))
 updater.start_polling()
